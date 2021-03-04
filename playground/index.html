@@ -5,9 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index file</title>
-    <script src="./dist/main.js"></script>
+    <!-- include the angular.js file -->
+    <!-- CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 </head>
-<body>
-    <h2>Demo Content...</h2>
+<body ng-app="app">
+
+    <h2>Addition : {{ 3 + 4 }} </h2>
+
+
+    <script>
+        var app = angular.module("app", []);
+    </script>
+
 </body>
 </html>

@@ -6,3 +6,4 @@ console.log(foo.getDetail());
 
 console.log("Loaded");
 console.log("Magic Number - ", MAGIC_NUMBER);
+
