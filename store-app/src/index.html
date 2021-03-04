@@ -1,21 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 </head>
+
 <body ng-app="store-app">
-    <h3>Contents coming soon ...</h3>
-    <p>Addition : {{ 4 + 4 }}</p>
-    <!-- $scope -->
-    <div ng-controller="StoreController">
-        The message is : {{ message }}
+
+<div ng-controller="StoreController" class="container">
+
+<ul class="list-unstyled">
+<li ng-repeat="product in products">
+    <div class="card">
+        <div class="card-header">{{ product.name }}</div>
+        <div class="card-body">
+            <p ng-if="product.isAvailable">Price : {{ product.price }}</p>
+            <p>Company : {{ product.company }}</p>
+
+            <div class="container" ng-controller="NavController">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a ng-click="setTab(1)" 
+                            href class="nav-link"
+                            ng-class="{active : isTabSelected(1) }">Show Comment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a ng-click="setTab(2)" 
+                            href class="nav-link"
+                            ng-class="{active : isTabSelected(2) }">Add Comment</a>
+                    </li>
+                </ul>
+
+                <section>
+                    <!-- Show Comment -->
+                    <div ng-show="isTabSelected(1)">
+                        <ul class="list-group">
+                            <li class="list-group-item" 
+                                ng-repeat="comment in product.comments">
+                                <blockquote> {{ comment.body }} 
+                                    <cite class="float-right"> 
+                                        -{{comment.author}}
+                                    </cite> </blockquote>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Add Comment -->
+                    <div ng-show="isTabSelected(2)">
+                        Form coming soon...
+                    </div>
+                </section>
+
+            </div>
+        </div>
     </div>
-    <!-- this -->
-    <div ng-controller="DemoController as ctrl">
-        Message : {{ ctrl.message }}
-    </div>
+</li>
+</ul>
+
+
+
+
+</div>
+
+
+
+<!-- this
+<div ng-controller="DemoController as ctrl">
+Message : {{ ctrl.message }}
+</div> -->
 </body>
+
 </html>
