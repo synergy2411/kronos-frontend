@@ -89,13 +89,13 @@
 // console.log(student.eat());
 
 
-var Shoe = {
-    size : 8
-}
+// var Shoe = {
+//     size : 8
+// }
 
-var magicShoe = Object.create(Shoe);
+// var magicShoe = Object.create(Shoe);
 
-magicShoe.gender = "Man";
+// magicShoe.gender = "Man";
 // magicShoe.size = 10;
 
 
@@ -105,8 +105,12 @@ magicShoe.gender = "Man";
 // console.log(Shoe.isPrototypeOf(magicShoe));
 // console.log(magicShoe.isPrototypeOf(Shoe));
 
-var slipper = Object.create(magicShoe);
+// var slipper = Object.create(magicShoe);
 // console.log(slipper.size);
 // console.log(slipper);
-console.log(magicShoe.isPrototypeOf(slipper));      // ?
-console.log(Shoe.isPrototypeOf(slipper));           // ?
+// console.log(magicShoe.isPrototypeOf(slipper));      // ?
+// console.log(Shoe.isPrototypeOf(slipper));           // ?
+
+
+// Constructor Function
+
