@@ -9,5 +9,13 @@
 <body ng-app="store-app">
     <h3>Contents coming soon ...</h3>
     <p>Addition : {{ 4 + 4 }}</p>
+    <!-- $scope -->
+    <div ng-controller="StoreController">
+        The message is : {{ message }}
+    </div>
+    <!-- this -->
+    <div ng-controller="DemoController as ctrl">
+        Message : {{ ctrl.message }}
+    </div>
 </body>
 </html>
