@@ -13,8 +13,8 @@ module.exports = {
     },
     module : {
         rules : [{
-            test : /\.css%/,
-            use : ["styke-loader", "css-loader"]
+            test : /\.css$/,
+            use : ["style-loader", "css-loader"]
         }]
     },
     plugins : [

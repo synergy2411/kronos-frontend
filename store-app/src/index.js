@@ -1,9 +1,12 @@
-import { MAGIC_NUMBER, Student } from './utils';
+import angular from 'angular';
+import app from './modules/app.module';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
-let foo = new Student("test@test.com", 32);
-console.log(foo.getDetail());
 
-console.log("Loaded");
-console.log("Magic Number - ", MAGIC_NUMBER);
 
+
+
+
+
+// npm install angular bootstrap --save
