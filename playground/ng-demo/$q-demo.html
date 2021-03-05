@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$q Service Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app = "app">
+    
+    <div ng-controller = "MainController"></div>
+
+    <script>
+        const app = angular.module("app", []);
+
+        app.controller("MainController", ["$scope","Data", function($scope, dataFactory){
+            dataFactory.getAPIData()
+                .then(function(response){
+                    console.log("Controller - ", response)
+                }).catch(function(err){
+                    console.log(err);
+                })
+        } ])
+
+        app.factory("Data", ["$http", "$q", function DataFactory($http, $q){
+
+            let obj = {};
+
+            obj.getAPIData = function(){
+                const qObj = $q.defer();         // $q service object
+                $http.get("https://jsonplaceholder.typicode.com/posts")
+                    .then(function(response){
+                        console.log(response.data)
+                        qObj.resolve(response.data);
+                    })
+                    .catch(function(err){
+                        qObj.reject(err);
+                    })
+                return qObj.promise;
+            }
+
+            return obj;
+
+        }])
+        
+    </script>
+
+</body>
+</html>

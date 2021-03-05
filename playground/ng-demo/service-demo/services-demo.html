@@ -18,30 +18,32 @@
     <script>
         const app = angular.module("app", []);
 
-        app.controller("MainController", function ($scope, MyFactory, MyService, Configurable) {
-            
-            console.log("Provider - " , Configurable.message);
-            
-            // console.log(MyService.message);
+        app.controller("MainController", ["$scope", "MyFactory", "MyService", "Congigurable", "Address",
+            function ($scope, MyFactory, MyService, Configurable, Address) {
+
+                console.log("Provider - ", Configurable.message);
+                console.log("Address - ", Address);
+
+                // console.log(MyService.message);
 
 
-            // console.log("Message - ", MyFactory.message);
-            // MyFactory.setMessage("Message from Controller");
-            // console.log("Message - ", MyFactory.message);
-        })
+                // console.log("Message - ", MyFactory.message);
+                // MyFactory.setMessage("Message from Controller");
+                // console.log("Message - ", MyFactory.message);
+            }])
 
         app.controller("SecondController", function ($scope, MyFactory) {
             // console.log("Second Controller - ", MyFactory.message);
         })
         // Factory type Service
-        app.factory("MyFactory", function () {
+        app.factory("MyFactory",[ "$htttp", function ($http) {
             let obj = {};
             obj.message = "Factory Message";
             obj.setMessage = function (msg) {
                 obj.message = msg;
             }
             return obj;
-        })
+        }])
 
         // Service type service
         app.service("MyService", function () {
@@ -51,24 +53,29 @@
             }
         })
 
-        app.config(["ConfigurableProvider", function(ConfigurableProvider){
+        app.config(["ConfigurableProvider", "CompanyName", 
+            function (ConfigurableProvider, cn) {
             ConfigurableProvider.setMessage("Supplied from Config...")
             console.log("CONFIG....");
+            console.log("Name : ", cn);
         }]);
-        
+
         // Provider
-        app.provider("Configurable", function ConfigurableProvider () {
+        app.provider("Configurable", function () {
+            let obj = {};
+            obj.message = "Provider Message";
+            this.setMessage = function (msg) {
+                obj.message = msg
+            }
             this.$get = function () {
-                let obj = {};
-                obj.message = "Provider Message";
-                obj.setMessage = function (msg) {
-                    obj.message = msg;
-                }
                 return obj;
             }
         })
 
-       
+        // Constant type Service - configurable
+        app.constant("CompanyName", "Kronos");
+        // Value type Service
+        app.value("Address", "201, Main Road");
 
     </script>
 
