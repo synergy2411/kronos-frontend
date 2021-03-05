@@ -18,6 +18,18 @@ app.controller("NavController", function ($scope) {
 
 })
 
+app.controller("FormController", function($scope){
+    $scope.comment = {};
+    $scope.onSubmit = function(product){
+        product.comments.push($scope.comment);
+        $scope.comment = {};
+    }
+})
+
+// select drop down - 1-5 rating - required
+// textarea - body - validation - [required, minlength -6 ]
+// email field - type email - validation - [required - email]
+
 const PRODUCTS = [{
     name: "iPhone 12",
     company: "Apple",
@@ -25,9 +37,9 @@ const PRODUCTS = [{
     isAvailable: true,
     comments: [
         {
-            stars: 3,               // select drop down - 1-5 rating - required
-            body: "Like it",        // textarea - body - validation - [required, minlength -6 ]
-            author: "test@test.com" // email field - type email - validation - [required - email]
+            stars: 3,               
+            body: "Like it",        
+            author: "test@test.com" 
         },
         {
             stars: 5,
