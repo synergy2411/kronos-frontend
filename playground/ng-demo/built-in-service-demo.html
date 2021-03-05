@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="MainController">
+        <button ng-click="getData()">Fetch Data from API</button>
+    </div>
+
+    <script>
+        const app = angular.module("app", []);
+
+        app.controller("MainController", function ($scope, $log, $http, $timeout) {
+            $log.log("Logging....");
+            $timeout(function () {
+                $log.log("3 Seconds left....")
+            }, 3000);
+            $scope.getData = function () {
+                $http.get("https://jsonplaceholder.typicode.com/users")
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+                // $http.post("url", body)
+                // $http({method : "DELETE", url :""})
+                // $http({method : "POST", url :"", data : {}})
+                // $http({method : "GET", url :""})
+                // $http({method : "PATCH", url :"", data: {}})
+
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>
