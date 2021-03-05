@@ -25,9 +25,9 @@ const PRODUCTS = [{
     isAvailable: true,
     comments: [
         {
-            stars: 3,
-            body: "Like it",
-            author: "test@test.com"
+            stars: 3,               // select drop down - 1-5 rating - required
+            body: "Like it",        // textarea - body - validation - [required, minlength -6 ]
+            author: "test@test.com" // email field - type email - validation - [required - email]
         },
         {
             stars: 5,
