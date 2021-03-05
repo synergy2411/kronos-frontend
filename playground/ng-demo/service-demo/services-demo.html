@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="MainController"></div>
+
+    <div ng-controller="SecondController"></div>
+
+    <script>
+        const app = angular.module("app", []);
+
+        app.controller("MainController", function ($scope, MyFactory, MyService, Configurable) {
+            
+            console.log("Provider - " , Configurable.message);
+            
+            // console.log(MyService.message);
+
+
+            // console.log("Message - ", MyFactory.message);
+            // MyFactory.setMessage("Message from Controller");
+            // console.log("Message - ", MyFactory.message);
+        })
+
+        app.controller("SecondController", function ($scope, MyFactory) {
+            // console.log("Second Controller - ", MyFactory.message);
+        })
+        // Factory type Service
+        app.factory("MyFactory", function () {
+            let obj = {};
+            obj.message = "Factory Message";
+            obj.setMessage = function (msg) {
+                obj.message = msg;
+            }
+            return obj;
+        })
+
+        // Service type service
+        app.service("MyService", function () {
+            this.message = "Service Message";
+            this.setMessage = function (msg) {
+                this.message = msg
+            }
+        })
+
+        app.config(["ConfigurableProvider", function(ConfigurableProvider){
+            ConfigurableProvider.setMessage("Supplied from Config...")
+            console.log("CONFIG....");
+        }]);
+        
+        // Provider
+        app.provider("Configurable", function ConfigurableProvider () {
+            this.$get = function () {
+                let obj = {};
+                obj.message = "Provider Message";
+                obj.setMessage = function (msg) {
+                    obj.message = msg;
+                }
+                return obj;
+            }
+        })
+
+       
+
+    </script>
+
+</body>
+
+</html>
