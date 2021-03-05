@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app = "app">
+    
+    <div ng-controller="FirstController">
+
+        <h3>Time : {{ time }}</h3>
+        <button ng-click="onButtonClick()">Change - ngClick</button>
+        <button id="btnChange">Change - outside Angular</button>
+    </div>
+
+    <div ng-controller="SecondController"></div>
+
+    <script>
+        const app = angular.module("app", []);
+        app.controller("FirstController", function($scope, $rootScope){
+            $rootScope.favColor = "red";
+            // $digest, $watch, $apply
+
+            $scope.time = new Date();
+
+            $scope.$watch(
+                function(scope){
+                    return scope.time;
+                },           // value function
+                function(currentValue, previousValue){
+                    // write to code to update the Value/UI
+                    console.log("Current Value - ", currentValue)
+                    console.log("Previous Value - ", previousValue)
+                }            // listener function
+            )
+
+            $scope.onButtonClick = function(){
+                $scope.time = new Date();
+            }
+
+            document.getElementById("btnChange").addEventListener("click", function(){
+                $scope.$apply(function(){
+                    $scope.time = new Date();
+                })
+                
+                // $scope.$digest();
+                alert("Clicked");
+            })
+
+        })
+        app.controller("SecondController", function($scope, $rootScope){
+            console.log("Fav Color - ", $rootScope.favColor)
+        })
+
+
+        
+    </script>
+
+</body>
+</html>
