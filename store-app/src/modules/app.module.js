@@ -2,8 +2,14 @@ const app = angular.module("store-app", []);
 
 app.controller("StoreController", function ($scope) {
     $scope.message = "Hello Angular";
-    $scope.products = PRODUCTS;
+    // $scope.products = PRODUCTS;
+    // Get Data from the DataFactory
 })
+
+// - Convert products data into JSON file
+// - save products.json inside model folder
+// - Create factory and make XHR Call to "./model/products.json"
+// - populate the data into StoreController
 
 app.controller("NavController", function ($scope) {
     $scope.tab = 0;
@@ -26,49 +32,50 @@ app.controller("FormController", function($scope){
     }
 })
 
+
 // select drop down - 1-5 rating - required
 // textarea - body - validation - [required, minlength -6 ]
 // email field - type email - validation - [required - email]
 
-const PRODUCTS = [{
-    name: "iPhone 12",
-    company: "Apple",
-    price: 70000,
-    isAvailable: true,
-    comments: [
-        {
-            stars: 3,               
-            body: "Like it",        
-            author: "test@test.com" 
-        },
-        {
-            stars: 5,
-            body: "Love it",
-            author: "abe@test.com"
-        }
-    ]
-}, {
-    name: "S20",
-    company: "Samsung",
-    price: 60000,
-    isAvailable: false,
-    comments: []
-}, {
-    name: "Edge Plus",
-    company: "Motorola",
-    price: 50000,
-    isAvailable: true,
-    comments: [{
-        stars: 3,
-        body: "Like it",
-        author: "test@test.com"
-    },
-    {
-        stars: 5,
-        body: "Love it",
-        author: "abe@test.com"
-    }]
-}]
+// const PRODUCTS = [{
+//     name: "iPhone 12",
+//     company: "Apple",
+//     price: 70000,
+//     isAvailable: true,
+//     comments: [
+//         {
+//             stars: 3,               
+//             body: "Like it",        
+//             author: "test@test.com" 
+//         },
+//         {
+//             stars: 5,
+//             body: "Love it",
+//             author: "abe@test.com"
+//         }
+//     ]
+// }, {
+//     name: "S20",
+//     company: "Samsung",
+//     price: 60000,
+//     isAvailable: false,
+//     comments: []
+// }, {
+//     name: "Edge Plus",
+//     company: "Motorola",
+//     price: 50000,
+//     isAvailable: true,
+//     comments: [{
+//         stars: 3,
+//         body: "Like it",
+//         author: "test@test.com"
+//     },
+//     {
+//         stars: 5,
+//         body: "Love it",
+//         author: "abe@test.com"
+//     }]
+// }]
 
 
 // app.controller("DemoController", function(){
