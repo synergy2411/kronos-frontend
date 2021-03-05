@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app = "app">
+
+    <div ng-controller="MainController">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Income</th>
+                <th>Contact Number</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users | limitTo : 3 | orderBy : '-firstName'">
+                <!-- <tr ng-repeat="user in users | filter : 'bill'"> -->
+                    <td>{{ user.firstName | uppercase }} {{ user.lastName | lowercase }}</td>
+                    <td>{{ user.dob | date : 'dd/MM/yyyy' }}</td>
+                    <td>{{ user.income | currency : 'EUR' : 1 }}</td>
+                    <td>{{ user.contact_number | countryCode : "USA"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const app = angular.module("app", []);
+
+        app.controller("MainController", function($scope){
+            $scope.users = USERS;
+        })
+
+        app.filter("countryCode", function(){
+            return function(input, ...args){
+                console.log(input, args);
+                switch (args[0]) {
+                    case 'USA':
+                        return "+1 " + input;
+                        
+                    case 'AUS':
+                        return "+12 " + input;
+                        
+                    case 'UAE':
+                        return "+31 " + input;
+                        
+                    default:
+                        return "+91 " + input;
+                }
+                
+            }
+        })
+
+        const USERS = [{
+            firstName : "Bill",
+            lastName : "Gates",
+            dob : new Date("Dec 21, 1965"),
+            income : 50000,
+            isWorking : true,
+            contact_number : 987654321
+        },{
+            firstName : "steve",
+            lastName : "jobs",
+            dob : new Date("Dec 21, 1965"),
+            income : 50000,
+            isWorking : true,
+            contact_number : 987654321
+        },{
+            firstName : "Tim B.",
+            lastName : "Lee",
+            dob : new Date("Dec 21, 1965"),
+            income : 50000,
+            isWorking : true,
+            contact_number : 987654321
+        },{
+            firstName : "Mark",
+            lastName : "Z",
+            dob : new Date("Dec 21, 1965"),
+            income : 50000,
+            isWorking : true,
+            contact_number : 987654321
+        }]
+        
+    </script>
+
+</body>
+</html>
