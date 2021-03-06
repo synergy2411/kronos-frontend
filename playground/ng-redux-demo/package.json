@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "angular": "^1.8.2",
-    "bootstrap": "^4.6.0"
+    "bootstrap": "^4.6.0",
+    "ng-redux": "^4.4.3",
+    "redux": "^4.0.5"
   }
 }
