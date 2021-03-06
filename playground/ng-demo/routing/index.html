@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +14,17 @@
 <body ng-app="app">
 
     <ul>
-        <li><a href="#!/">Home</a></li>
-        <li><a href="#!/users">Users</a></li>
-        <li><a href="#!/products">Products</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users">Users</a></li>
+        <li><a href="/products/99">Products</a></li>
     </ul>
 
     <div ng-view></div>
 
     <script>
         const app = angular.module("app", ["ngRoute"]);
-        app.config(function ($routeProvider) {
+        app.config(function ($routeProvider, $locationProvider) {
+            $locationProvider.html5Mode(true);
             $routeProvider
                 .when("/", {
                     // template: `<h2>Home Template</h2>`
@@ -30,9 +32,17 @@
                 }).when("/users", {
                     // template: `<h2>USers Template</h2>`,
                     templateUrl : "./views/users.html"
-                }).when("/products", {
+                }).when("/products/:id", {
                     // template: `<h2>Products Template</h2>`
-                    templateUrl : "./views/products.html"
+                    templateUrl : "./views/products.html",
+                    controller : function($routeParams, $route, $location){
+                        this.productId = $routeParams["id"];
+                        console.log($route);
+                        this.onBtnClick = function(){
+                            $location.path("/users");
+                        }
+                    },
+                    controllerAs : "productCtrl"
                 }).otherwise({
                     redirectTo : "/users"
                 });
@@ -45,4 +55,7 @@
 
 </html>
 
+
+
 <!-- npm install serve -g -->
+<!-- routing> serve -->
