@@ -21,4 +21,12 @@ export class CounterController{
         this.onIncrement();
     }
 
+    onDecrease(){
+        // call action method
+        this.onDecrement();
+    }
+
+    onAdd(value){
+        this.onAddAction(value)
+    }
 }
