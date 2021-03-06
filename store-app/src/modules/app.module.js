@@ -84,3 +84,13 @@ app.controller("FormController", function($scope){
 
 
 export default app;
+
+
+
+
+// - Create Angular Form for Studnet Registration App
+// - Put all the necessary validation
+// - Display all Error messages to UI according to Validation rules
+// - On submission of form, the student data should save inside angular Data factory 
+// - Fetch the data from Service inside new controller
+// - dislay the student data on UI
