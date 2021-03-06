@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="MainController as ctrl">
+        <!-- <app-demo title="{{ctrl.title}}"></app-demo> -->
+        <app-demo title="ctrl.title"></app-demo>
+    </div>
+    <!-- <div app-demo></div>
+    <div class="app-demo"></div> -->
+
+    <script>
+        const app = angular.module("app", []);
+        app.controller("MainController", function () {
+            this.title = "Awesome App with = sign";
+         })
+
+        app.directive("appDemo", function () {
+            return {
+                restrict: "E",          // A- attribute C- Class E- Element M-Comment
+                templateUrl: "./views/demo.html",
+                controller: function () { this.msg = "Directive Message" },
+                controllerAs: "demo",
+                scope : {
+                    title : "="         // "@" | "="
+                },
+                link : function(scope, element, attrs){
+                    console.log("LINK---")
+                    console.log(scope, element, attrs);
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
