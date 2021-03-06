@@ -14,6 +14,7 @@
     <div ng-controller="MainController as ctrl">
         <!-- <app-demo title="{{ctrl.title}}"></app-demo> -->
         <app-demo title="ctrl.title"></app-demo>
+        <app-comp></app-comp>
     </div>
     <!-- <div app-demo></div>
     <div class="app-demo"></div> -->
@@ -40,6 +41,14 @@
             }
         })
 
+        // Components - 
+        app.component("appComp", {
+            templateUrl : "./views/comp.html",
+            controller : function(){},
+            controllerAs : `$ctrl`
+        })
+
+        
     </script>
 
 </body>
