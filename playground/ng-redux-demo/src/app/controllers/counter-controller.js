@@ -12,17 +12,20 @@ export class CounterController{
 
     mapStateToThis(state){
         return {
-            counter : state.counter,
+            ctr : state.counter,
             res : state.result
         }
     }
+    // onStoreResult(){
+    //     this.onResultStore();
+    // }
 
     onIncrease(){
-        this.onIncrement();
+        // this.onIncrement();
+        this.asyncIncrement();
     }
 
     onDecrease(){
-        // call action method
         this.onDecrement();
     }
 

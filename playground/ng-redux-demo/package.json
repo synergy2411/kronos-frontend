@@ -23,6 +23,7 @@
     "angular": "^1.8.2",
     "bootstrap": "^4.6.0",
     "ng-redux": "^4.4.3",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   }
 }

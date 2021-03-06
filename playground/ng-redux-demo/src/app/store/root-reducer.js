@@ -21,8 +21,13 @@ export function rootReducer(state = initialState, action) {
                 ...state,
                 counter: state.counter + action.value
             }
+        case counterActions.STORE_RESULT:
+            return {
+                ...state,
+                result: [...state.result, state.counter] //state.result.push(state.counter)
+            }
         default:
             return state;
     }
-    
+
 }

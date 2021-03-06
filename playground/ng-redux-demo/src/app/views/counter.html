@@ -1,12 +1,12 @@
 <div class="container">
 <h1>Counter Component Loaded</h1>
 
-<h2>Counter : {{ $ctrl.counter }}</h2>
+<h2>Counter : {{ $ctrl.ctr }}</h2>
 
 <button class="btn btn-primary" 
     ng-click="$ctrl.onIncrease()">Increase</button>
 <button class="btn btn-dark" 
-    ng-click="$ctrl.onDecrease()">Decrease</button>
+    ng-click="$ctrl.onDecrement()">Decrease</button>
 <button class="btn btn-success" 
     ng-click="$ctrl.onAdd(10)">Add Number - 10</button>
 
@@ -14,9 +14,17 @@
     <br>
     <div class="row">
         
-        <button class="btn-danger btn-block">
+        <!-- <button class="btn-danger btn-block" ng-click="$ctrl.onStoreResult()"> -->
+        <button class="btn-danger btn-block" ng-click="$ctrl.onResultStore()">
             Store
         </button>
+        <hr>
+
+        <ul>
+            <li ng-repeat="item in $ctrl.res">
+                {{ item }}
+            </li>
+        </ul>
     </div>
 </div>
 
